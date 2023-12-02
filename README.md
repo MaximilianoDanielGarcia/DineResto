@@ -1,4 +1,17 @@
-# Astro Starter Kit: Basics
+# Dine Resto
+
+- [Live site here](https://master--jolly-selkie-a27ece.netlify.app/)
+
+## Screenshots
+
+![Desktop screenshot](/public/screenshots/desktop.jpeg)
+
+![Tablet screenshot](/public/screenshots/tablet.jpeg)
+
+![Mobile screenshot](/public/screenshots/mobile.jpeg)
+
+
+## Astro Starter Kit: Basics
 
 ```sh
 npm create astro@latest -- --template basics
