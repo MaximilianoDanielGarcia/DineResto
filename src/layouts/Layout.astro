@@ -1,0 +1,142 @@
+---
+interface Props {
+	title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content="Astro description" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@300;400;700&display=swap" rel="stylesheet">
+	</head>
+	<body>
+		<slot />
+
+		<footer>
+			<a href="/"><img src="/images/logo.svg" alt=""></a>
+			<div>
+				<div>
+					<p>MARTHWAITE, SEDBERGH</p>
+					<p>CUMBRIA</p>
+					<p>+ 00 44 123 4567</p>
+				</div>
+				<div>
+					<p>OPEN TIMES</p>
+					<p>MON - FRI: 09:00 AM - 10:00 PM</p>
+					<p>SAT - SUN: 09:00 AM - 11:30 PM</p>
+				</div>
+			</div>
+		</footer>
+	</body>
+</html>
+<style is:global>
+	:root {
+		--black-bg: black;
+		--dark-gray-bg: hsl(0, 0%, 9%);
+		--white: hsl(0, 0%, 100%);
+		--dark-text: hsl(215, 19%, 17%);
+		--light-text: hsl(0, 0%, 65%);
+		--golden: hsl(27, 22%, 51%);
+		--light-gray: hsl(210, 8%, 85%);
+	}
+
+	* {
+		padding: 0;
+		margin: 0;
+		box-sizing: border-box;
+	}
+
+	body {
+		display: grid;
+		place-items: center;
+		min-height: 100vh;
+		font-family: 'League Spartan', sans-serif;
+	}
+
+	footer {
+		display: flex;
+		justify-content: start;
+		align-items: center;
+		gap: 200px;
+		height: 250px;
+		color: var(--white);
+		background: var(--black-bg);
+		width: 100%;
+		padding-inline: 8.7%;
+
+		& > div {
+			display: flex;
+			justify-content: space-around;
+			width: 100%;
+		}
+
+		& > div > div {
+			display: flex;
+			flex-direction: column;
+			gap: 15px;
+		}
+
+
+		& > div > div > p {
+			font-size: 14px;
+			letter-spacing: 2px;
+			text-wrap: nowrap;
+		}
+	}
+
+	@media screen and (width <= 900px) {
+
+		footer {
+
+			align-items: start;
+			padding-top: 100px;
+			height: 400px;
+
+			& > div {
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				gap: 50px;
+				width: 100%;
+			}
+		}
+	}
+
+	@media screen and (width <= 600px) {
+
+		footer {
+			display: flex;
+			flex-direction: column;
+			justify-content: start;
+			align-items: center;
+			gap: 60px;
+			height: 500px;
+			width: 100%;
+
+			& > div {
+				display: flex;
+				align-items: center;
+				justify-content: space-around;
+				width: 100%;
+			}
+
+			& > div > div {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				gap: 15px;
+			}
+		}
+	}
+	
+</style>

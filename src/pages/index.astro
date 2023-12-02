@@ -1,0 +1,769 @@
+---
+import Article from "../components/Article.astro";
+import Button from "../components/Button.astro";
+import MenuItem from "../components/MenuItem.astro";
+import SimpleBanner from "../components/SimpleBanner.astro";
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="Dine Resto.">
+	<header>
+        <a href="/"><img src="/images/logo.svg" alt=""></a>
+    </header>
+	<main>
+		<section class="hero">
+			<div class="hero-text">
+				<div>
+					<h1>Exquisite dining since 1989</h1>
+					<p>
+						Experience our seasonal menu in beautiful country
+						surroundings. Eat the freshest produce from the comfort
+						of our farmhouse.
+					</p>
+				</div>
+				<Button
+					color="white"
+					bgColor="transparent"
+					text="Book a table"
+					href="/booking/"
+				/>
+			</div>
+		</section>
+		<section class="second">
+			<div>
+				<picture>
+					<source
+						srcset="/images/homepage/enjoyable-place-mobile@2x.jpg"
+						media="(width <= 600px)"
+					/>
+					<source
+						srcset="/images/homepage/enjoyable-place-tablet@2x.jpg"
+						media="(width <= 900px)"
+					/>
+					<img
+						src="/images/homepage/enjoyable-place-desktop@2x.jpg"
+						alt=""
+					/>
+				</picture>
+			</div>
+
+			<Article
+				title="Enjoyable place for all the family"
+				description="Our relaxed surroundings make dining with us a great experience for everyone. We can even arrange a tour of the farm before your meal."
+				color="hsl(215, 19%, 17%)"
+				titleWidth="380px"
+				hideBorder={false}
+			/>
+		</section>
+		<section class="third">
+			<Article
+				title="The most locally sourced food"
+				description="All our ingredients come directly from our farm or local fishery. So you can be sure that you’re eating the freshest, most sustainable food."
+				color="hsl(215, 19%, 17%)"
+				titleWidth="380px"
+				hideBorder={false}
+			/>
+			<div style="width: 100%; height: 100%;">
+				<picture>
+					<source
+						srcset="/images/homepage/locally-sourced-mobile@2x.jpg"
+						media="(width <= 600px)"
+					/>
+					<source
+						srcset="/images/homepage/locally-sourced-tablet@2x.jpg"
+						media="(width <= 900px)"
+					/>
+					<img
+						src="/images/homepage/locally-sourced-desktop@2x.jpg"
+						alt=""
+					/>
+				</picture>
+				<img src="/images/patterns/pattern-lines.svg" alt="" />
+			</div>
+		</section>
+		<section class="fourth">
+			<Article
+				title="A few highlights from our menu"
+				description="We cater for all dietary requirements, but here’s a glimpse at some of our diner’s favourites. Our menu is revamped every season."
+				color="white"
+				titleWidth="100%"
+				hideBorder={false}
+			/>
+			<div style="display:flex; flex-direction: column; width: 100%">
+				<MenuItem
+					title="Seared Salmon Fillet"
+					description="Our locally sourced salmon served with a refreshing buckwheat summer salad."
+					src="/images/homepage/salmon-desktop-tablet@2x.jpg"
+					srcMobile="/images/homepage/salmon-mobile@2x.jpg"
+					color="white"
+					borderBottom
+				/>
+				<MenuItem
+					title="Rosemary Filet Mignon"
+					description="Our prime beef served to your taste with a delicious choice of seasonal sides."
+					src="/images/homepage/beef-desktop-tablet@2x.jpg"
+					srcMobile="/images/homepage/beef-mobile@2x.jpg"
+					color="white"
+					borderBottom
+				/>
+				<MenuItem
+					title="Summer Fruit Chocolate Mousse"
+					description="Creamy mousse combined with summer fruits and dark chocolate shavings."
+					src="/images/homepage/chocolate-desktop-tablet@2x.jpg"
+					srcMobile="/images/homepage/chocolate-mobile@2x.jpg"
+					color="white"
+				/>
+			</div>
+		</section>
+		<section class="fifth">
+			<div class="left-side">
+				<picture class="pictures">
+					<source
+						srcset="/images/homepage/family-gathering-mobile@2x.jpg"
+						media="(width <= 600px)"
+					/>
+					<source
+						srcset="/images/homepage/family-gathering-tablet@2x.jpg"
+						media="(width <= 900px)"
+					/>
+					<img
+						src="/images/homepage/family-gathering-desktop@2x.jpg"
+						alt=""
+					/>
+				</picture>
+				<picture class="hidden pictures">
+					<source
+						srcset="/images/homepage/special-events-mobile@2x.jpg"
+						media="(width <= 600px)"
+					/>
+					<source
+						srcset="/images/homepage/special-events-tablet@2x.jpg"
+						media="(width <= 900px)"
+					/>
+					<img
+						src="/images/homepage/special-events-desktop@2x.jpg"
+						alt=""
+					/>
+				</picture>
+				<picture class="hidden pictures">
+					<source
+						srcset="/images/homepage/social-events-mobile@2x.jpg"
+						media="(width <= 600px)"
+					/>
+					<source
+						srcset="/images/homepage/social-events-tablet@2x.jpg"
+						media="(width <= 900px)"
+					/>
+					<img
+						src="/images/homepage/social-events-desktop@2x.jpg"
+						alt=""
+					/>
+				</picture>
+				<img src="/images/patterns/pattern-lines.svg" alt="" />
+			</div>
+			<div class="right-side">
+				<div>
+					<Article
+						title="Family Gathering"
+						description="We love catering for entire families. So please bring everyone along for a special meal with your loved ones. We’ll provide a memorable experience for all."
+						color="black"
+						titleWidth="100%"
+						hideBorder={true}
+					/>
+
+					<Button
+						color="white"
+						bgColor="black"
+						href="/booking/"
+						text="Book a table"
+					/>
+				</div>
+
+				<ul class="event-list">
+					<li class="image-selector active" data-img-index="0"><button>FAMILY GATHERING</button></li>
+					<li class="image-selector" data-img-index="1"><button>SPECIAL EVENTS</button></li>
+					<li class="image-selector" data-img-index="2"><button>SOCIAL EVENTS</button></li>
+				</ul>
+			</div>
+		</section>
+		<section class="sixth">
+			<SimpleBanner title="Ready to make a reservation?" />
+		</section>
+	</main>
+</Layout>
+
+<style>
+
+	header {
+		position: absolute;
+		top: 7%;
+		left: 8.7%;
+		z-index: 9999;
+	}
+
+	main {
+		display: flex;
+		flex-direction: column;
+		align-items: start;
+		justify-content: start;
+		width: 100%;
+		height: 100%;
+		min-width: 1440px;
+	}
+
+	.hero {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		width: 100%;
+		height: 820px;
+		color: var(--white);
+		background-color: black;
+		background-image: url("/images/homepage/hero-bg-desktop@2x.jpg");
+		background-position: top right;
+		background-repeat: no-repeat;
+		background-size: contain;
+	}
+
+	.hero-text {
+		display: flex;
+		flex-direction: column;
+		gap: 40px;
+		align-items: start;
+		padding-left: 8.7%;
+		width: 700px;
+		padding-top: 58px;
+
+		& > div {
+			display: flex;
+			flex-direction: column;
+			gap: 10px;
+		}
+
+		& > div > p {
+			width: 80%;
+			font-size: 20px;
+			line-height: 30px;
+		}
+	}
+
+	h1 {
+		font-family: "League Spartan", sans-serif;
+		font-size: 78px;
+		font-weight: 300;
+		line-height: 80px;
+	}
+
+	.second,
+	.third {
+		display: grid;
+		place-items: center;
+		grid-template-columns: 50% 50%;
+		width: 100%;
+		padding: 100px 50px;
+		height: 600px;
+		background-repeat: no-repeat;
+
+		& > div {
+			width: 100%;
+			height: 100%;
+		}
+
+		& > div > picture {
+			display: grid;
+			place-items: center;
+			position: relative;
+			width: 100%;
+			height: 100%;
+		}
+
+		& > div > picture > img {
+			position: absolute;
+			top: -160px;
+			max-width: 540px;
+		}
+	}
+
+	.second {
+		background-image: url("/images/patterns/pattern-curve-top-right.svg");
+		background-position: bottom left;
+		margin-bottom: 250px;
+	}
+
+	.third {
+		background-image: url("/images/patterns/pattern-curve-top-left.svg");
+		background-position: bottom right;
+
+		& > div {
+			position: relative;
+		}
+
+		& > div > img {
+			position: absolute;
+			top: 50%;
+			right: 100px;
+			transform: translateY(-70%);
+		}
+	}
+
+	.fourth {
+		display: grid;
+		place-items: center;
+		grid-template-columns: 1fr 1fr;
+		background-color: var(--black-bg);
+		width: 100%;
+		padding: 150px 0 100px 0;
+	}
+
+	.fifth {
+		display: grid;
+		align-items: center;
+		grid-template-columns: 1fr 1fr;
+		background-image: url("/images/patterns/pattern-curve-top-right.svg");
+		background-position: -30% top;
+		background-repeat: no-repeat;
+		width: 100%;
+		height: 800px;
+
+		& > .left-side {
+			display: grid;
+			place-items: center;
+			position: relative;
+			width: 100%;
+			height: 100%;
+		}
+
+		& > .left-side > img {
+			position: absolute;
+			top: 10%;
+			left: 16%;
+		}
+
+		& > .left-side > picture {
+			width: 100%;
+			height: 100%;
+		}
+
+		& > .left-side > picture > img {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			max-width: 540px;
+		}
+
+		& > .right-side {
+			display: flex;
+			justify-content: center;
+			flex-direction: column;
+			height: 100%;
+			gap: 80px;
+		}
+
+		& > .right-side > div {
+			display: flex;
+			justify-content: start;
+			align-items: start;
+			text-align: left;
+			flex-direction: column;
+			gap: 40px;
+		}
+
+		.event-list {
+			list-style-type: none;
+			display: flex;
+			flex-direction: column;
+			gap: 25px;
+
+			& > li > button {
+				background: none;
+				color: var(--light-text);
+				font-size: 18px;
+				font-weight: 700;
+				letter-spacing: 2px;
+				border: none;
+				font-family: "League Spartan", sans-serif;
+				cursor: pointer;
+			}
+
+			& > li > button:hover {
+				color: var(--dark-text);
+			}
+
+			& > li.active > button {
+				color: var(--dark-text);
+			}
+
+			& > li {
+				position: relative;
+			}
+
+			& > li.active::before {
+				content: "";
+				width: 150px;
+				height: 1px;
+				background: var(--golden);
+				position: absolute;
+				top: 50%;
+				left: -20%;
+				z-index: -1;
+				transform: translateY(-50%);
+			}
+		}
+	}
+
+	.hidden {
+		display: none;
+	}
+
+	.sixth {
+		width: 100%;
+	}
+
+	@media screen and (width <= 900px) {
+
+		header {
+			top: 45%;
+			left: 450px;
+			transform: translateX(-50%);
+		}
+
+		main {
+			min-width: 900px;
+		}
+
+		.hero {
+			justify-content: end;
+			align-items: center;
+			height: 1050px;
+			background-image: url("/images/homepage/hero-bg-tablet@2x.jpg");
+			background-position: center -50px;
+			background-size: cover;
+			padding-bottom: 230px;
+		}
+
+		.hero-text {
+			gap: 40px;
+			align-items: center;
+			justify-content: center;
+			text-align: center;
+			padding-left: 0px;
+
+			& > div {
+				gap: 20px;
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				align-items: center;
+			}
+
+			& > div > p {
+				width: 100%;
+				font-size: 20px;
+				line-height: 30px;
+			}
+		}
+
+		h1 {
+			width: 70%;
+			text-align: center;
+			font-size: 60px;
+			line-height: 70px;
+		}
+
+		.second,
+		.third {
+			display: flex;
+			flex-direction: column;
+			width: 100%;
+			padding: 100px;
+			height: 700px;
+		}
+
+		.second {
+			background-position: -450px 150px;
+			margin-bottom: 0px;
+		}
+
+		.third {
+			height: 800px;
+			padding: 20px 100px 120px 100px;
+			background-position: 450px bottom;
+			flex-direction: column-reverse;
+
+			& > div > picture > img {
+				position: absolute;
+				top: 0px;
+				max-width: 540px;
+			}
+
+			& > div > img {
+				position: absolute;
+				top: 65%;
+				right: 0px;
+				transform: translateY(-70%);
+			}
+		}
+
+		.fourth {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			padding: 100px;
+			gap: 50px;
+
+			& > div {
+				align-items: center;
+			}
+		}
+
+		.fifth {
+			display: flex;
+			flex-direction: column;
+			background-position: -450px top;
+			height: 1000px;
+
+			& > .right-side {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				flex-direction: column-reverse;
+				height: 100%;
+				gap: 0px;
+			}
+
+			& > .right-side > div {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				flex-direction: column;
+				height: 100%;
+				gap: 50px;
+			}
+
+			.event-list {
+				flex-direction: row;
+				gap: 25px;
+
+				& > li > button {
+					font-size: 16px;
+				}
+
+				& > li.active::before {
+					width: 50px;
+					top: 25px;
+					left: 50%;
+					transform: translateY(-50%) translateX(-50%);
+				}
+			}
+		}
+	}
+
+	@media screen and (width <= 600px) {
+
+		header {
+			top: 35%;
+			left: 50%;
+			transform: translateX(-50%);
+		}
+
+		main {
+			min-width: 100%;
+		}
+
+		.hero {
+			height: 900px;
+			background-image: url("/images/homepage/hero-bg-mobile@2x.jpg");
+			background-position: center -50px;
+			background-size: 100%;
+			padding-bottom: 160px;
+		}
+
+		.hero-text {
+			width: 80%;
+			gap: 40px;
+			align-items: center;
+			justify-content: center;
+			text-align: center;
+			padding-left: 0px;
+
+			& > div {
+				gap: 20px;
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				align-items: center;
+			}
+
+			& > div > p {
+				width: 100%;
+				font-size: clamp(14.5px, 3.8vw, 20px);
+				line-height: 6vw;
+			}
+		}
+
+		h1 {
+			width: 80%;
+			font-size: clamp(36px, 9vw, 56px);
+			line-height: 11vw;
+		}
+
+		.second,
+		.third {
+			display: flex;
+			flex-direction: column;
+			width: 100%;
+			padding-inline: 10%;
+			height: 930px;
+
+			& > div > picture > img {
+				position: absolute;
+				top: -160px;
+				max-width: 100%;
+			}
+		}
+
+		.second {
+			background-image: none;
+			margin-bottom: 0px;
+		}
+
+		.third {
+			height: 1030px;
+			padding-inline: 10%;
+			background-image: none;
+			flex-direction: column-reverse;
+
+			& > div > picture > img {
+				position: absolute;
+				top: 0px;
+				max-width: 100%;
+			}
+
+			& > div > img {
+				display: none;
+			}
+		}
+
+		.fourth {
+			padding: 15% 10%;
+			gap: 50px;
+		}
+
+		.fifth {
+			display: flex;
+			flex-direction: column;
+			background-image: none;
+			padding: 100px 10% 50px 10%;
+			height: 1350px;
+
+			& > .left-side > img {
+				display: none;
+			}
+
+			& > .left-side > picture > img {
+				max-width: 100%;
+			}
+
+			& > .right-side {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				flex-direction: column-reverse;
+				height: 600px;
+				padding-top: 40px;
+				gap: 0px;
+			}
+
+			& > .right-side > div {
+				height: 600px;
+			}
+
+			.event-list {
+				flex-direction: column;
+				text-align: center;
+				gap: 30px;
+
+				& > li > button {
+					font-size: 18px;
+				}
+
+				& > li.active::before {
+					top: 20px;
+				}
+			}
+		}
+	}
+
+	@media screen and (width <= 450px) {
+
+		header {
+			top: 24%;
+		}
+
+		.hero {
+			height: 750px;
+		}
+
+		.second,
+		.third {
+			height: 700px;
+		}
+
+		.third {
+			height: 800px;
+		}
+
+		.fifth {
+			height: 1100px;
+		}
+
+		.event-list {
+
+			& > li > button {
+				font-size: 16px;
+			}
+		}
+	}
+
+</style>
+
+<script>
+	const imageSelectors = document.querySelectorAll('.image-selector');
+	const pictures = document.querySelectorAll('.pictures');
+
+	imageSelectors.forEach(imgSelector => {
+		imgSelector.addEventListener('click', (e) => {
+
+			const target = e.target.parentElement;
+			const imgSelectedIndex = target.getAttribute('data-img-index');
+
+			hideAllPictures();
+			pictures[imgSelectedIndex].classList.remove('hidden');
+
+			inactiveAllButton();
+			target.classList.add('active');
+		});
+	});
+
+
+
+	function inactiveAllButton(){
+		imageSelectors.forEach(imgSelector => {
+		
+			if(imgSelector.classList.contains('active')){
+				imgSelector.classList.remove('active');
+			}
+	});
+	}
+
+	function hideAllPictures(){
+		pictures.forEach(picture => {
+			if(!picture.classList.contains('hidden')){
+				picture.classList.add('hidden');
+			}
+		});
+	}
+	
+</script>

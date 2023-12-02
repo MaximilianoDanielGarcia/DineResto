@@ -1,0 +1,353 @@
+---
+import Button from './Button.astro';
+interface Props {
+    textButton: string;
+    colorButton: string;
+    backgroundButton: string;
+}
+
+const { textButton, colorButton, backgroundButton } = Astro.props;
+
+---
+
+<div class="calendar">
+
+    <input id="username" name="username" type="text" placeholder="Name" maxlength="100">
+    <p id="msg-username-validation" class="msg-valdation">This field is required</p>
+    <input id="email" name="email" type="email" placeholder="Email" maxlength="100">
+    <p id="msg-email-validation" class="msg-valdation">This field is required</p>
+
+    <div class="date-container">
+        <p>Pick a date</p>
+        <div>
+            <input id="day" name="day" type="text" placeholder="DD" maxlength="2">
+            <input id="month" name="month" type="text" placeholder="MM" maxlength="2">
+            <input id="year" name="year" type="text" placeholder="YYYY" maxlength="4">
+        </div>
+    </div>
+    <div class="time-container">
+        <p>Pick a time</p>
+        <div>
+            <input id="hours" name="hours" type="text" placeholder="09" pattern="/^\d+$/" maxlength="2">
+            <input id="minutes" name="minutes" type="text" placeholder="00" pattern="/^\d+$/" maxlength="2">
+            <select name="ampm" id="ampm">
+                <option value="am">AM</option>
+                <option value="pm">PM</option>
+            </select>
+        </div>
+    </div>
+    <div class="amount-persons">
+        <button id="subtract"><img src="/images/icons/icon-minus.svg" alt=""></button>
+        <p id="amount" data-persons="1">1 person</p>
+        <button id="add"><img src="/images/icons/icon-plus.svg" alt=""></button>
+    </div>
+    <Button href='/' color={colorButton} text={textButton} bgColor={backgroundButton} fullwidth/>
+</div>
+
+<script>
+    //USERNAME & EMAIL VALIDATIONS
+    const username = document.getElementById('username');
+    const email = document.getElementById('email');
+	const msgValidation = document.getElementById('msg-email-validation');
+    const msgUserValidation = document.getElementById('msg-username-validation');
+
+	const regexForEmailValidation = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+
+    username.addEventListener('focus', (e) => {
+		msgUserValidation.style.opacity = '0';
+	})
+
+    username.addEventListener('blur', (e) => {
+        if(e.target.value === ''){
+            msgUserValidation.innerHTML = "This field is required.";
+            msgUserValidation.style.opacity = '1';
+        }
+    });
+
+	email.addEventListener('focus', (e) => {
+		msgValidation.style.opacity = '0';
+	})
+
+    email.addEventListener('blur', (e) => {
+
+        if(e.target.value === ''){
+            msgValidation.innerHTML = "This field is required.";
+            msgValidation.style.opacity = '1';
+        }
+        else {
+            if(!regexForEmailValidation.test(e.target.value)){
+                msgValidation.innerHTML = "Please enter a valid email.";
+                msgValidation.style.opacity = '1';
+            }
+        }
+	})
+
+    //DATE & TIME VALIDATIONS
+    const day = document.getElementById('day');
+    const month = document.getElementById('month');
+    const year = document.getElementById('year');
+
+    day.addEventListener('keypress', (e) => {
+        
+        if(!regexOnlyDigits.test(e.key)){
+            e.preventDefault();
+        }
+    });
+
+    day.addEventListener('blur', (e) => {
+        const limitDays = 31;
+
+        digitConversion(e.target, limitDays);
+
+    });
+
+    month.addEventListener('keypress', (e) => {
+        
+        if(!regexOnlyDigits.test(e.key)){
+            e.preventDefault();
+        }
+    });
+
+    month.addEventListener('blur', (e) => {
+        const limitMonth = 12;
+
+        digitConversion(e.target, limitMonth);
+
+    });
+
+    year.addEventListener('keypress', (e) => {
+        
+        if(!regexOnlyDigits.test(e.key)){
+            e.preventDefault();
+        }
+    });
+
+    year.addEventListener('blur', (e) => {
+        const limitYears = 2030;
+
+        digitConversion(e.target, limitYears);
+
+    });
+
+    const hours = document.getElementById('hours');
+    const minutes = document.getElementById('minutes');
+    const regexOnlyDigits = /^\d+$/;
+
+    hours.addEventListener('keypress', (e) => {
+        
+        if(!regexOnlyDigits.test(e.key)){
+            e.preventDefault();
+        }
+    });
+
+    hours.addEventListener('blur', (e) => {
+        const limitHours = 12;
+
+        digitConversion(e.target, limitHours);
+
+    });
+
+    minutes.addEventListener('keypress', (e) => {
+        
+        if(!regexOnlyDigits.test(e.key)){
+            e.preventDefault();
+        }
+    });
+
+    minutes.addEventListener('blur', (e) => {
+        const limitMinutes = 59;
+        digitConversion(e.target, limitMinutes);
+
+    });
+
+    function digitConversion(target, limit){
+
+        if(Number.parseInt(target.value) > limit){
+            target.value = "";
+        }
+        else {
+            if(Number.parseInt(target.value) < 10){
+                
+                target.value = `0${target.value}`;
+            }
+        }
+    }
+
+    // ADD AND SUBTRACT PERSONS
+    const minusButton = document.getElementById('subtract');
+    const plusButton = document.getElementById('add');
+    const amountPersons = document.getElementById('amount');
+
+    let counter = Number.parseInt(amountPersons.getAttribute('data-persons'));
+    
+    minusButton.addEventListener('click', () => {
+
+        if(counter > 1){
+            counter--;
+        }
+
+        amountPersons.innerHTML = `${counter} ${counter > 1 ? 'persons' : 'person'}`;
+        amountPersons.setAttribute('data-persons', counter.toString());
+    });
+
+    plusButton.addEventListener('click', () => {
+        if(counter <= 10){
+            counter++;
+        }
+
+        amountPersons.innerHTML = `${counter} ${counter > 1 ? 'persons' : 'person'}`;
+        amountPersons.setAttribute('data-persons', counter.toString());
+    });
+
+</script>
+
+<style>
+    .calendar {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+        width: 550px;
+        height: 550px;
+        background: var(--white);
+        padding: 30px 50px;
+    }
+
+    input[type="text"], input[type="email"] {
+        width: 100%;
+        height: 55px;
+        background: none;
+        border: none;
+        border-bottom: 1px solid gray;
+        font-family: 'League Spartan', sans-serif;
+        outline: none;
+        font-size: 20px;
+        color: var(--dark-text);
+        padding-left: 20px;
+    }
+
+    input[type="text"]::placeholder {
+        font-size: 20px;
+        color: var(--light-text);
+    }
+
+    .msg-valdation {
+        text-align: left;
+        color: var(--golden);
+        width: 100%;
+        padding-left: 20px;
+        font-size: 12px;
+        margin-top: -10px;
+        opacity: 0;
+    }
+
+    .date-container, .time-container {
+        display: flex;
+        justify-content: center;
+        align-items: end;
+        gap: 50px;
+
+        & > p {
+            font-size: 20px;
+            color: var(--black-bg);
+            text-wrap: nowrap;
+            padding-bottom: 10px;
+        }
+
+        & > div {
+            display: flex;
+            gap: 15px;
+            justify-content: space-evenly;
+            align-items: center;
+        }
+    }
+
+    .amount-persons {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    select {
+        width: 100%;
+        height: 100%;
+        font-size: 18px;
+        height: 55px;
+        border: none;
+        border-bottom: 1px solid gray;
+        appearance: none;
+        background-image: url('/images/icons/icon-arrow.svg');
+        background-repeat: no-repeat;
+        background-position: 50px center;
+        padding-left: 10px;
+        outline: none;
+        cursor: pointer;
+    }
+
+    .amount-persons {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        height: 55px;
+        font-size: 20px;
+        font-weight: 700;
+        border-bottom: 1px solid gray;
+        margin-bottom: 10px;
+
+        & > button {
+            display: grid;
+            place-items: center;
+            width: 30px;
+            height: 30px;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        & > button:hover img {
+            transform: scale(1.5);
+        }
+    }
+
+    @media screen and (width <= 600px) {
+
+        .calendar {
+            width: 100%;
+            min-height: 550px;
+            gap: 15px;
+            padding: 30px 10%;
+        }
+
+        input[type="text"], input[type="email"] {
+            height: 40px;
+            font-size: 16px;
+        }
+
+        input[type="text"]::placeholder {
+            font-size: 16px;
+        }
+
+        .date-container, .time-container {
+            flex-direction: column;
+            align-items: start;
+            gap: 0px;
+
+            & > p {
+                font-size: 18px;
+            }
+        }
+
+        select {
+            font-size: 16px;
+            height: 40px;
+            background-position: 40px center;
+        }
+
+        .amount-persons {
+           font-size: 18px;
+        }
+    }
+
+</style>

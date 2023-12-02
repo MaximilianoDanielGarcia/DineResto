@@ -1,0 +1,64 @@
+---
+interface Props {
+    title: string;
+	description: string;
+    color: string;
+    titleWidth: string;
+    hideBorder?: boolean;
+}
+
+const { title, description, color, titleWidth, hideBorder } = Astro.props;
+
+---
+
+<article>
+    <img class:list={[{ hide: hideBorder }]} src="/images/patterns/pattern-divide.svg" alt="">
+    <h2>{ title }</h2>
+    <p>{ description }</p>
+</article>
+
+<style define:vars={{ color, titleWidth }}>
+    article {
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+        justify-content: start;
+        text-align: left;
+        gap: 30px;
+        max-width: 450px;
+        color: var(--color);
+    }
+
+    .hide {
+        display: none;
+    }
+
+    h2 {
+        max-width: var(--titleWidth);
+        font-size: 48px;
+    }
+
+    p {
+        font-size: 18px;
+        line-height: 30px;
+    }
+
+    @media screen and (width <= 900px) {
+        article {
+            align-items: center;
+            text-align: center;
+        }
+    }
+
+    @media screen and (width <= 450px) {
+        h2 {
+            font-size: clamp(38px, 10vw, 46px);
+            line-height: 12vw;
+        }
+
+        p {
+            font-size: clamp(15px, 4vw, 18px);
+            line-height: 7vw;
+        }
+    }
+</style>

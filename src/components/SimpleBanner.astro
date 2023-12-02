@@ -1,0 +1,80 @@
+---
+import Button from './Button.astro';
+interface Props {
+    title: string;
+}
+
+const { title } = Astro.props;
+
+---
+
+<div class="simple-banner">
+    <picture>
+        <source srcset="/images/homepage/ready-bg-mobile@2x.jpg" media="(width <= 600px)">
+        <source srcset="/images/homepage/ready-bg-tablet@2x.jpg" media="(width <= 900px)">
+        <img src="/images/homepage/ready-bg-desktop@2x.jpg" alt="">
+    </picture>
+    <h2>{ title }</h2>
+    <Button color='white' bgColor='transparent' text='Book a table' href='/booking/'/>
+</div>
+
+<style>
+    .simple-banner {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: relative;
+        padding-inline: 8.7%;
+        width: 100%;
+        height: 320px;
+    }
+
+    picture {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+    }
+
+    picture > img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    h2 {
+        font-size: 48px;
+        color: var(--white);
+    }
+
+    @media screen and (width <= 900px) {
+        .simple-banner {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 30px;
+        }
+    }
+
+    @media screen and (width <= 600px) {
+        .simple-banner {
+            text-align: center;
+            gap: 30px;
+        }
+
+        h2 {
+            font-size: 40px;
+            line-height: 44px;
+        }
+    }
+
+    @media screen and (width <= 450px) {
+        h2 {
+            font-size: 32px;
+            line-height: 36px;
+        }
+    }
+
+</style>
